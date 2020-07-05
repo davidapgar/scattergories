@@ -1,0 +1,26 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-size: 18px;
+}
+
+.container {
+  flex: auto;
+  padding: 0 4px 0 4px;
+  height: 100vh;
+}
+
+.header {
+  text-align: center;
+  font-size: 28px;
+  padding: 20px 0 20px 0;
+  border: 2px solid #000;
+}
+
+.game {
+  border: 2px solid #000;
+  margin-top: 8px;
+  height: 100%;
+}
