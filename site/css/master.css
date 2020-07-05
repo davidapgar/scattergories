@@ -3,11 +3,12 @@
   margin: 0;
   box-sizing: border-box;
   font-family: "Helvetica", "Arial", sans-serif;
-  font-size: 18px;
 }
 
 .container {
-  flex: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
   padding: 0 4px 0 4px;
   height: 100vh;
 }
@@ -19,8 +20,71 @@
   border: 2px solid #000;
 }
 
-.game {
+.game-container {
   border: 2px solid #000;
   margin-top: 8px;
   height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.game-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: stretch;
+
+  flex: 1;
+  min-width: 250px; /* TODO: Figure out the right value for this */
+}
+
+.game-letter-container {
+  flex: 1;
+  font-size: 220px;
+  text-align: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-timer {
+  font-size: 88px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-timer:hover {
+  background-color: #878787;
+}
+
+.game-categories {
+  flex: 6;
+  display: flex;
+
+  padding: 18px 18px 18px 18px;
+}
+
+.game-category-list {
+  font-size: 28px;
+  text-decoration: underline;
+
+
+  margin-left: 28px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.game-category-list li {
+  margin-bottom: .3em;
+}
+
+.debug {
+  margin: 2px;
+  border: 4px solid red;
 }
