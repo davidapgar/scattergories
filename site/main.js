@@ -2,9 +2,11 @@ console.log('hello world');
 const gameTimer = document.getElementById('gameTimer');
 
 class CountDown {
-  constructor() {
-    this.count = 10;
+  constructor(amount, onDone) {
+    this.initialCount = amount;
+    this.count = amount;
     this.intervalID = null;
+    this.onDone = onDone;
   }
 
   get running() {
@@ -12,24 +14,57 @@ class CountDown {
   }
 
   start() {
-    this.count = 10;
-    this.intervalID = window.setInterval(timeTick, 1000);
+    this.intervalID = window.setInterval(timeTick, 1000, this);
   }
-}
 
-gameTimer.textContent = "111";
-let countDown = new CountDown();
-console.log("Is running? " + countDown.running);
+  stop() {
+    if (!this.running) {
+      return;
+    }
 
-function timeTick() {
-  if (countDown.count <= 0 && countDown.running) {
-    // Stop the timer.
     window.clearInterval(this.intervalID);
-  } else {
-    countDown.count -= 1;
-    gameTimer.textContent = countDown.count;
+    this.intervalID = null;
+  }
+
+  reset() {
+    this.count = initialCount;
+  }
+
+  event() {
+    if (this.running) {
+      this.stop();
+    } else {
+      this.start();
+    }
+  }
+
+  tick() {
+    if (this.running) {
+      this.count -= 1;
+    }
+
+    this.display();
+
+    if (this.count <= 0) {
+      this.stop();
+      this.onDone();
+    }
+  }
+
+  display() {
+    gameTimer.textContent = this.count;
   }
 }
 
-gameTimer.textContent = countDown.count;
-countDown.start();
+function timeTick(countDown) {
+  countDown.tick();
+}
+
+let countDown = new CountDown(3, function() {
+  alert("Done!");
+});
+countDown.display();
+
+gameTimer.onclick = function() {
+  countDown.event();
+}
