@@ -68,3 +68,24 @@ countDown.display();
 gameTimer.onclick = function() {
   countDown.event();
 }
+
+fetch('list.json')
+.then(response => response.json())
+.then(json => {
+  console.log("did it");
+  // get a random list
+  listIdx = Math.floor(Math.random() * json.length);
+  console.log(listIdx);
+  list = json[listIdx];
+  if (list.length != 12) {
+    console.log(`List isn't length 12, was: ${list.length}`);
+    return;
+  }
+  for (let i = 0; i < list.length; i++) {
+    let category = document.querySelector(`#category-${i+1}`);
+    category.textContent = list[i];
+  }
+})
+.catch(error => {
+  console.log("didn't");
+})
