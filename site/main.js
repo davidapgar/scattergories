@@ -1,9 +1,13 @@
-import * as Categories from './categories.js';
+import * as Data from './categories.js';
 import { CountDown } from './count_down.js';
 
 const gameTimer = document.getElementById('gameTimer');
+const gameTimerReset = document.querySelector('.game-timer-reset')
+const resetButton = document.querySelector('.reset');
+const gameLetter = document.querySelector('.game-letter');
+const gameLetterReset = document.querySelector('.game-letter-reset');
 
-let countDown = new CountDown(3, function() {
+let countDown = new CountDown(120, gameTimer, function() {
   alert("Done!");
 });
 countDown.display();
@@ -12,30 +16,29 @@ gameTimer.onclick = function() {
   countDown.event();
 }
 
-let list = Categories.lists[0];
-for (let i = 0; i < list.length; i++) {
-  let category = document.querySelector(`#category-${i+1}`);
-  category.textContent = list[i];
+function resetLetter() {
+  let letterIdx = Math.floor(Math.random() * Data.letters.length);
+  let letter = Data.letters[letterIdx];
+  gameLetter.textContent = letter;
 }
-/*
-fetch('list.json')
-.then(response => response.json())
-.then(json => {
-  console.log("did it");
-  // get a random list
-  listIdx = Math.floor(Math.random() * json.length);
-  console.log(listIdx);
-  list = json[listIdx];
-  if (list.length != 12) {
-    console.log(`List isn't length 12, was: ${list.length}`);
-    return;
-  }
+
+function reset() {
+  countDown.stop();
+  countDown.reset();
+  countDown.display();
+
+  let listIdx = Math.floor(Math.random() * Data.lists.length);
+  let list = Data.lists[listIdx];
   for (let i = 0; i < list.length; i++) {
     let category = document.querySelector(`#category-${i+1}`);
     category.textContent = list[i];
   }
-})
-.catch(error => {
-  console.log("didn't");
-})
-*/
+
+  resetLetter();
+}
+
+resetButton.onclick = reset;
+gameLetterReset.onclick = resetLetter;
+gameTimerReset.onclick = function() { countDown.reset(); }
+
+reset();

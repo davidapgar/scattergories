@@ -1,8 +1,9 @@
 class CountDown {
-  constructor(amount, onDone) {
+  constructor(amount, timer, onDone) {
     this.initialCount = amount;
     this.count = amount;
     this.intervalID = null;
+    this.timer = timer;
     this.onDone = onDone;
   }
 
@@ -30,7 +31,9 @@ class CountDown {
   }
 
   reset() {
-    this.count = initialCount;
+    this.stop();
+    this.count = this.initialCount;
+    this.display();
   }
 
   event() {
@@ -55,7 +58,7 @@ class CountDown {
   }
 
   display() {
-    gameTimer.textContent = this.count;
+    this.timer.textContent = this.count;
   }
 }
 
