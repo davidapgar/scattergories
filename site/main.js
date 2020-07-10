@@ -6,6 +6,7 @@ const gameTimerReset = document.querySelector('.game-timer-reset')
 const resetButton = document.querySelector('.reset');
 const gameLetter = document.querySelector('.game-letter');
 const gameLetterReset = document.querySelector('.game-letter-reset');
+const gameLetterNext = document.querySelector('.game-letter-next');
 
 let countDown = new CountDown(120, gameTimer, function() {
   alert("Done!");
@@ -40,5 +41,10 @@ function reset() {
 resetButton.onclick = reset;
 gameLetterReset.onclick = resetLetter;
 gameTimerReset.onclick = function() { countDown.reset(); }
+gameLetterNext.onclick = function() {
+  resetLetter();
+  countDown.reset();
+  countDown.start();
+}
 
 reset();

@@ -90,6 +90,22 @@
   cursor: pointer;
 }
 
+.game-letter-next {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+
+  font-size: 12px;
+  padding: 4px;
+  border: 2px solid black;
+  border-radius: 6px;
+}
+
+.game-letter-next:hover {
+  background-color: #d3d3d3;
+  cursor: pointer;
+}
+
 .game-timer-reset {
   position: absolute;
   top: 4px;
