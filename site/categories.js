@@ -79,7 +79,7 @@ const lists =
     "Countries",
     "Things that have spots",
     "Historical Figures",
-    "Something you’re afraid oF",
+    "Something you’re afraid of",
     "Terms of endearment",
     "Items in this room",
     "Drugs that are abused"
