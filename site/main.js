@@ -33,11 +33,17 @@ let countDown = new CountDown(120, gameTimer, function() {
 countDown.display();
 
 function selectLetter() {
+  if (letters.length === 0) {
+    letters = Data.letters.shuffle();
+  }
   let letter = letters.shift();
   gameLetter.textContent = letter;
 }
 
 function selectList() {
+  if (lists.length === 0) {
+    lists = Data.lists.shuffle();
+  }
   let list = lists.shift();
   for (let i = 0; i < list.length; i++) {
     let category = document.querySelector(`#category-${i+1}`);
